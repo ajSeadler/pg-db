@@ -15,15 +15,13 @@ apiRouter.use(async (req, res, next) => {
   if (!auth) {
     next();
   } else if (auth.startsWith(prefix)) {
-    // TODO - Get JUST the token out of 'auth'
     const token = auth.slice(prefix.length);
 
     try {
       const parsedToken = jwt.verify(token, JWT_SECRET);
-
       const id = parsedToken && parsedToken.id;
       if (id) {
-        req.user = await getUserById(id)
+        req.user = await getUserById(id);
         next();
       }
     } catch (error) {
@@ -45,9 +43,15 @@ apiRouter.use((req, res, next) => {
   next();
 });
 
+// Add users router
 const usersRouter = require("./users");
 apiRouter.use("/users", usersRouter);
 
+// Add posts router
+const postsRouter = require("./posts");
+apiRouter.use("/posts", postsRouter);
 
+const communitiesRouter = require("./communities");  // Import the communities router
+apiRouter.use("/communities", communitiesRouter); 
 
 module.exports = apiRouter;

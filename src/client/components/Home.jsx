@@ -6,18 +6,7 @@ import Sidebar from './Sidebar'; // Import Sidebar component
 const HomePage = () => {
   return (
     <div className="homepage-container">
-      <header className="homepage-header">
-        <div className="header-logo">
-          <h1>filo.</h1>
-        </div>
-        <nav className="nav-bar">
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </nav>
-      </header>
+      
       
       <main className="homepage-main">
         {/* Sidebar */}
@@ -30,8 +19,8 @@ const HomePage = () => {
             <div className="flex-container">
                 {/* Site Description and Join CTA */}
               <div className="site-description">
-                <h2>Welcome to filo.</h2>
-                <p>First in last out. Filo is the go-to platform for tech enthusiasts. Join our community to discuss the latest trends in technology, programming, gadgets, and more. Get answers, share knowledge, and connect with others.</p>
+                <h2>Welcome to Filo.</h2>
+                <p><strong>First in last out.</strong> Filo is the go-to platform for tech enthusiasts. Join our community to discuss the latest trends in technology, programming, gadgets, and more. Get answers, share knowledge, and connect with others.</p>
                 <button className="cta-button">
                   <FaRegHandshake /> Join Today
                 </button>
