@@ -81,7 +81,7 @@ html {
 }
 
 .navbar-links ul li a:hover {
-  color: #00b4cc; /* Light blue for hover effect */
+  color: 06BA63; /* Light blue for hover effect */
   background-color: rgba(0, 180, 204, 0.1); /* Subtle background highlight on hover */
   box-shadow: 0 2px 5px rgba(0, 180, 204, 0.2); /* Slight shadow for depth */
   text-decoration: underline; /* Underline text on hover for better feedback */
@@ -94,7 +94,7 @@ html {
   margin-left: 10px;
   padding: 10px 20px;
   border: none;
-  background-color: #00b4cc;
+  background-color: #06BA63;
   color: #fff;
   cursor: pointer;
   border-radius: 5px;
@@ -146,7 +146,7 @@ html {
 }
 
 .login-container button {
-  background-color: #00b4cc;
+  background-color: #06BA63;
   color: white;
   padding: 12px;
   border: none;
@@ -194,7 +194,7 @@ html {
 }
 
 .site-description .cta-button {
-  background-color: #00b4cc;
+  background-color: #06BA63;
   color: white;
   padding: 15px;
   border: none;
@@ -232,7 +232,9 @@ height: 100vh;
   background-color: #2d3a45;
   color: white;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px #06BA63; /* Adjust the radius and color for the glow */
+
 }
 
 .sidebar-action {
@@ -242,7 +244,7 @@ height: 100vh;
 .sidebar-action button {
   width: 100%;
   padding: 12px;
-  background-color: #00b4cc;
+  background-color: #06BA63;
   color: white;
   border: none;
   border-radius: 4px;
@@ -262,7 +264,7 @@ height: 100vh;
 .tech-communities h3 {
   font-size: 1.5rem;
   margin-bottom: 10px;
-  color: #00b4cc; /* Light blue for the title */
+  color: #06BA63; /* Light blue for the title */
 }
 
 .tech-communities ul {
@@ -284,13 +286,13 @@ height: 100vh;
 }
 
 .tech-communities ul li a:hover {
-  color: #00b4cc;
+  color: #06BA63;
 }
 
 .tech-communities ul li a svg {
   margin-right: 8px;
   font-size: 1.3rem;
-  color: #00b4cc; /* Matching icon color */
+  color: #06BA63; /* Matching icon color */
 }
 /* Feed Area */
 /* Feed Area */
@@ -298,8 +300,10 @@ height: 100vh;
   width: 75vw;
   margin-left: 20px; /* Add some space between sidebar and feed */
  height: auto;
-  overflow-y: auto;
-  padding-right: 20px; /* Add  padding for the scrollbar */
+ border-radius: 20px;
+  overflow-y: auto ;
+  box-shadow: 0 0 15px #06BA63; /* Adjust the radius and color for the glow */
+
 }
 
 .feed-content {
@@ -350,7 +354,7 @@ height: 100vh;
 }
 
 .cta-button {
-  background-color: #00b4cc;
+  background-color: #06BA63;
   color: white;
   padding: 15px;
   border: none;
@@ -427,7 +431,7 @@ height: 100vh;
 }
 
 .recent-topics ul li a, .popular-discussions ul li a {
-  color: #00b4cc;
+  color: #06BA63;
   text-decoration: none;
   transition: color 0.3s;
 }
@@ -455,7 +459,7 @@ height: 100vh;
 
 .post-header h3 {
   font-size: 1.5rem;
-  color: #00b4cc; /* Light blue color */
+  color: #06BA63; /* Light blue color */
 }
 
 .post-header span {
@@ -477,7 +481,7 @@ height: 100vh;
 
 .pagination button {
   padding: 10px 15px;
-  background-color: #00b4cc;
+  background-color: #06BA63;
   color: white;
   border: none;
   border-radius: 5px;
@@ -515,7 +519,7 @@ height: 100vh;
 }
 
 .cta-button {
-  background-color: #00b4cc; /* Consistent with the site's color scheme */
+  background-color: #06BA63; /* Consistent with the site's color scheme */
   color: white;
   padding: 15px;
   border: none;
@@ -570,7 +574,7 @@ flex-direction: column;
   font-size: 1.7rem;
   font-weight: 600;
   margin-bottom: 12px;
-  color: #00b4cc; /* Blue for title */
+  color: #06BA63; /* Blue for title */
 }
 
 .community-header p {
@@ -590,7 +594,7 @@ flex-direction: column;
 .view-button {
   text-decoration: none;
   padding: 12px;
-  background-color: #00b4cc; /* Blue button */
+  background-color: #06BA63; /* Blue button */
   color: #ffffff;
   font-weight: 500;
   border-radius: 4px;
@@ -646,7 +650,7 @@ flex-direction: column;
 
 .comment-submit-button {
   padding: 12px 20px;
-  background-color: #00b4cc;
+  background-color: #06BA63;
   color: white;
   border: none;
   border-radius: 4px;
@@ -680,7 +684,7 @@ flex-direction: column;
 
 .comment-author {
   font-weight: bold;
-  color: #00b4cc; /* Highlight author name in blue */
+  color: #06BA63; /* Highlight author name in blue */
 }
 
 .comment-time {
@@ -711,7 +715,7 @@ flex-direction: column;
 
 .comment-form button {
   padding: 12px 20px;
-  background-color: #00b4cc;
+  background-color: #06BA63;
   color: white;
   border: none;
   border-radius: 4px;

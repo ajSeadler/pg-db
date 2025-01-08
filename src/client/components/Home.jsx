@@ -14,7 +14,7 @@ const HomePage = () => {
     const fetchArticles = async () => {
       try {
         const response = await fetch(
-          'https://newsapi.org/v2/top-headlines?category=technology&pageSize=10&apiKey=be83d9d1677b4efb856608df4ba48bf7'
+          'https://newsapi.org/v2/top-headlines?category=technology&pageSize=20&apiKey=be83d9d1677b4efb856608df4ba48bf7'
         );
         const data = await response.json();
     

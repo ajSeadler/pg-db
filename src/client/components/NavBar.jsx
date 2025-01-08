@@ -6,7 +6,8 @@ const NavBar = () => {
   return (
     <header className="navbar">
       <div className="navbar-logo">
-        <h1>filo.</h1>
+      <h1><span style={{ color: 'white', textDecoration: 'underline', textDecorationColor: '#06BA63' }}>filo</span><span style={{ color: '#06BA63', textDecoration:'underline' }}>.</span></h1>
+
       </div>
 
       <nav className="navbar-links">
