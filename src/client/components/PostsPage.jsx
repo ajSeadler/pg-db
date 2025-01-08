@@ -10,6 +10,7 @@ const PostsPage = () => {
   const navigate = useNavigate();  // Initialize navigate
 
   useEffect(() => {
+    // Fetch posts whenever the page changes
     const fetchPosts = async () => {
       setLoading(true);
       try {
@@ -28,7 +29,11 @@ const PostsPage = () => {
     };
 
     fetchPosts();
-  }, [page]);
+
+    // Scroll to top whenever the page changes
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  }, [page]);  // This effect will run every time the page changes
 
   const handlePostClick = (postId) => {
     // Redirect to the full post page
@@ -45,6 +50,10 @@ const PostsPage = () => {
 
         <div className="feed">
           <div className="feed-content">
+          <div className="pagination">
+              <button onClick={handlePreviousPage} disabled={page === 1}>Previous</button>
+              <button onClick={handleNextPage}>Next</button>
+            </div>
             <div className="posts-container">
               {loading ? (
                 <p>Loading posts...</p>
@@ -66,10 +75,7 @@ const PostsPage = () => {
               )}
             </div>
 
-            <div className="pagination">
-              <button onClick={handlePreviousPage} disabled={page === 1}>Previous</button>
-              <button onClick={handleNextPage}>Next</button>
-            </div>
+            
           </div>
         </div>
       </main>

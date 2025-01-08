@@ -20,6 +20,7 @@ const PostsByCommunity = () => {
           throw new Error('Failed to fetch posts');
         }
         const data = await response.json();
+        console.log(data); 
         setPosts(data);
 
         // Extract the community name and description from the first post (assuming all posts are from the same community)

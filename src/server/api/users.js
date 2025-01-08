@@ -27,8 +27,12 @@ usersRouter.get("/", async (req, res, next) => {
 //NEED TO FIX THIS ROUTE. PROFILE PAGE WORKS WITHOUT IT BUT NOT WITH IT
 // usersRouter.get("/:id", async (req, res, next) => {
 //   try {
-//     const userId = req.params.id;
-//     const user = await getUserById(userId); //error is here
+//     const userId = parseInt(req.params.id, 10); // Ensure userId is an integer
+//     if (isNaN(userId)) {
+//       return res.status(400).json({ message: "Invalid user ID" });
+//     }
+
+//     const user = await getUserById(userId);
 
 //     if (!user) {
 //       return res.status(404).json({ message: "User not found" });
@@ -44,7 +48,7 @@ usersRouter.get("/", async (req, res, next) => {
 
 usersRouter.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
-  
+
   if (!email || !password) {
     next({
       name: "MissingCredentialsError",
@@ -81,23 +85,16 @@ usersRouter.post("/login", async (req, res, next) => {
   }
 });
 
-// ROute for the logged in users profile
 usersRouter.get("/me", requireUser, async (req, res, next) => {
   try {
-    
-    console.log("User profile:",req.user);
-    res.send(req.user);
+    res.send(req.user); // Make sure this sends the full user data
   } catch (error) {
     next(error);
   }
 });
 
-
-
-
-
 usersRouter.post("/register", async (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, first_name, last_name } = req.body;
 
   try {
     const _user = await getUserByEmail(email);
@@ -113,6 +110,8 @@ usersRouter.post("/register", async (req, res, next) => {
       name,
       email,
       password,
+      first_name,
+      last_name,
     });
 
     const token = jwt.sign(

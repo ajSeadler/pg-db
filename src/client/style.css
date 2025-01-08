@@ -7,6 +7,10 @@
 
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Background and basic layout */
 .homepage-container {
   background: radial-gradient(circle, #2c3e50, #34495e); /* Centered gradient */
@@ -103,10 +107,21 @@
 
 .login-container {
   /* background-color: #34495e; */
-  margin-bottom: 5%;
   width: auto;
  
   color: white;
+}
+
+.article-image img {
+  width: 500px; /* You can adjust this width as needed */
+  height: auto; /* Maintains the aspect ratio */
+  object-fit: cover; /* Ensures the image fits well without stretching */
+  margin-right: 10px;
+  border-radius: 20px; /* Space between the image and the article text */
+}
+
+.article-details {
+  width: 50%;
 }
 
 .login-container h2 {
@@ -282,9 +297,9 @@ height: 100vh;
 .feed {
   width: 75vw;
   margin-left: 20px; /* Add some space between sidebar and feed */
- height: 100vh;
-  overflow-y: scroll;
-  padding-right: 20px; /* Add padding for the scrollbar */
+ height: auto;
+  overflow-y: auto;
+  padding-right: 20px; /* Add  padding for the scrollbar */
 }
 
 .feed-content {
@@ -350,13 +365,52 @@ height: 100vh;
 }
 
 /* Recent Topics and Popular Discussions */
-.recent-topics, .popular-discussions {
+.recent-topics {
   background-color: #2d3a45;
   padding: 30px;
   margin-bottom: 30px;
   border-radius: 8px;
   color: white;
 }
+
+.recent-topics ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 20px; /* Space between grid items */
+  list-style-type: none;
+  padding: 0;
+}
+
+.article-item {
+  background-color: #3e4a56;
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.article-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.article-details h3 {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.article-details p {
+  font-size: 0.9em;
+  color: #ccc;
+}
+
+.article-details small {
+  font-size: 0.8em;
+  color: #bbb;
+}
+
 
 .recent-topics h2, .popular-discussions h2 {
   font-size: 2rem;
@@ -379,7 +433,7 @@ height: 100vh;
 }
 
 .recent-topics ul li a:hover, .popular-discussions ul li a:hover {
-  color: #007b8a;
+  color: #fcfcfc;
 }
 
 .posts-container {

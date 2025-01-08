@@ -59,16 +59,34 @@ const getAllUsers = async () => {
     }
 }
 
+const getReviewsByUserId = async (userId) => {
+    try {
+      const { rows } = await db.query(
+        `
+        SELECT *
+        FROM reviews
+        WHERE user_id = $1;
+        `,
+        [userId]
+      );
+  
+      return rows;
+    } catch (error) {
+      throw error;
+    }
+  };
 
 
   const getUserById = async (userId) => {
     try {
-      const { rows: [user] } = await db.query( 
+      const {
+        rows: [user],
+      } = await db.query(
         `
-        SELECT *
-        FROM users
-        WHERE id = $1;
-        `,
+          SELECT *
+          FROM users
+          WHERE id = $1;
+          `,
         [userId]
       );
   
@@ -84,7 +102,23 @@ const getAllUsers = async () => {
     }
   };
   
-
+  const getReviewsWithRestaurantDetails = async (userId) => {
+    try {
+      const reviews = await getReviewsByUserId(userId);
+  
+      const reviewsWithRestaurantDetails = await Promise.all(reviews.map(async (review) => {
+        const restaurant = await getRestaurantById(review.restaurant_id);
+        return {
+          ...review,
+          restaurant_name: restaurant.name || 'Unknown Restaurant',
+        };
+      }));
+  
+      return reviewsWithRestaurantDetails;
+    } catch (error) {
+      throw error;
+    }
+  };
   
 
 
@@ -94,8 +128,8 @@ module.exports = {
     createUser,
     getUser,
     getUserByEmail,
-   
+    getReviewsByUserId,
     getAllUsers, 
     getUserById,
-   
+    getReviewsWithRestaurantDetails
 };

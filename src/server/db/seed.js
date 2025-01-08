@@ -1,65 +1,13 @@
 const db = require("./client");
 const { createUser } = require("./users");
-
-// Users data array
-const users = [
-  {
-    name: "Emily Johnson",
-    email: "emily@example.com",
-    password: "securepass",
-    is_admin: true,
-  },
-  {
-    name: "Liu Wei",
-    email: "liu@example.com",
-    password: "strongpass",
-  },
-  {
-    name: "Isabella García",
-    email: "bella@example.com",
-    password: "pass1234",
-  },
-  {
-    name: "Mohammed Ahmed",
-    email: "mohammed@example.com",
-    password: "mysecretpassword",
-  },
-  {
-    name: "John Smith",
-    email: "john@example.com",
-    password: "password123",
-  },
-];
-
-// Communities data array
-const communities = [
-  { name: 'Programming', description: 'Discussions about coding and software development' },
-  { name: 'Cloud Computing', description: 'Explore cloud technologies and their applications' },
-  { name: 'Cybersecurity', description: 'Discussions about securing systems and networks' },
-  { name: 'Computer Hardware', description: 'All things related to computer components and hardware' },
-  { name: 'Windows', description: 'For everything about Microsoft Windows OS' },
-  { name: 'Mac', description: 'Discussions related to Apple Mac products and macOS' },
-];
-
-// Updated Posts data array with 10 posts
-const posts = [
-  { user_id: 1, content: "Excited about the latest advancements in AI!", community_id: 1 }, // Programming
-  { user_id: 2, content: "Just built my first custom PC. Feeling accomplished!", community_id: 4 }, // Computer Hardware
-  { user_id: 3, content: "The best programming languages for 2025, any thoughts?", community_id: 1 }, // Programming
-  { user_id: 4, content: "I think cloud computing will dominate in the next few years.", community_id: 2 }, // Cloud Computing
-  { user_id: 5, content: "Cybersecurity is becoming more important every day. Stay safe!", community_id: 3 }, // Cybersecurity
-  { user_id: 1, content: "Exploring the latest updates in AI tools and frameworks.", community_id: 1 }, // Programming
-  { user_id: 2, content: "Just upgraded my computer’s RAM and CPU, what’s your build?", community_id: 4 }, // Computer Hardware
-  { user_id: 5, content: "Why the cloud is the future for businesses and startups.", community_id: 2 }, // Cloud Computing
-  { user_id: 5, content: "What are the best practices for securing a home network?", community_id: 3 }, // Cybersecurity
-  { user_id: 3, content: "Looking for advice on the best IDE for JavaScript development.", community_id: 1 }, // Programming
-];
-
+const userData = require("./userData");  // Import user data
+const communityData = require("./communityData"); // Import community data
+const postData = require("./postData"); // Import post data
 
 // Function to drop the posts table
 const dropPostsTable = async () => {
   try {
-    await db.query(`DROP TABLE IF EXISTS posts CASCADE;`); // Drop posts table and dependent objects
+    await db.query(`DROP TABLE IF EXISTS posts CASCADE;`);
   } catch (err) {
     throw err;
   }
@@ -68,7 +16,7 @@ const dropPostsTable = async () => {
 // Function to drop the users table
 const dropUsersTable = async () => {
   try {
-    await db.query(`DROP TABLE IF EXISTS users CASCADE;`); // Drop users table and dependent objects
+    await db.query(`DROP TABLE IF EXISTS users CASCADE;`);
   } catch (err) {
     throw err;
   }
@@ -77,7 +25,7 @@ const dropUsersTable = async () => {
 // Function to drop the communities table
 const dropCommunitiesTable = async () => {
   try {
-    await db.query(`DROP TABLE IF EXISTS communities CASCADE;`); // Drop communities table and dependent objects
+    await db.query(`DROP TABLE IF EXISTS communities CASCADE;`);
   } catch (err) {
     throw err;
   }
@@ -136,7 +84,7 @@ const createPostsTable = async () => {
 // Insert communities into the table
 const insertCommunities = async () => {
   try {
-    for (const community of communities) {
+    for (const community of communityData) {
       await db.query(
         `INSERT INTO communities (name, description) VALUES ($1, $2)`,
         [community.name, community.description]
@@ -151,7 +99,7 @@ const insertCommunities = async () => {
 // Insert users into the table
 const insertUsers = async () => {
   try {
-    for (const [index, user] of users.entries()) {
+    for (const [index, user] of userData.entries()) {
       const isEmily = user.name === "Emily Johnson";
       const createdUser = await createUser({
         name: user.name,
@@ -176,7 +124,7 @@ const insertUsers = async () => {
 // Insert posts into the table
 const insertPosts = async () => {
   try {
-    for (const post of posts) {
+    for (const post of postData) {
       await db.query(`
         INSERT INTO posts (user_id, content, community_id)
         VALUES ($1, $2, $3)

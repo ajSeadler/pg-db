@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom'; // to handle redirect if no token
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // To navigate the user to login page if no token
 
   useEffect(() => {
     const fetchUserProfile = async () => {
+      // Retrieve token from localStorage
+      const token = localStorage.getItem('token');
+
+   
+
       try {
-        // Fetch user data from the backend /me route using fetch
-        const response = await fetch("/api/users/me", {
-          method: "GET",
+        const response = await fetch('/api/users/me', {
+          method: 'GET',
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem("token")}`, // Get token from localStorage or context
+            Authorization: `Bearer ${token}`, // Use the token in the header
           },
         });
 
@@ -30,7 +36,7 @@ const UserProfile = () => {
     };
 
     fetchUserProfile();
-  }, []);
+  }, [navigate]); // Include navigate to avoid dependencies warnings
 
   if (loading) {
     return <div>Loading...</div>;
