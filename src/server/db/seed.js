@@ -130,7 +130,6 @@ const insertPosts = async () => {
         VALUES ($1, $2, $3)
       `, [post.user_id, post.content, post.community_id]);
 
-      console.log("Post inserted:", post);
     }
     console.log("Seed posts data inserted successfully.");
   } catch (err) {

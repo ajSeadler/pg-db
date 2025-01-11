@@ -25,15 +25,28 @@ const Login = () => {
           password,
         }),
       });
+
       const result = await response.json();
-      setMessage(result.message);
+
       if (!response.ok) {
-        throw result;
+        throw new Error(result.message || 'Login failed');
       }
+
+      // Save the token to localStorage
+      if (result.token) {
+        localStorage.setItem('token', result.token);
+        setMessage('Login successful!');
+        console.log('Token stored:', result.token);
+      } else {
+        setMessage('Login successful, but no token received.');
+      }
+
+      // Clear form inputs
       setEmail('');
       setPassword('');
     } catch (err) {
-      console.error(`${err.name}: ${err.message}`);
+      setMessage(err.message);
+      console.error(`Error: ${err.message}`);
     }
   };
 
@@ -44,7 +57,7 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      {/* <h2>Login</h2> */}
+      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-group">
           <label htmlFor="email">Email:</label>

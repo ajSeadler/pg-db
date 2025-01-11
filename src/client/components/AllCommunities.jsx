@@ -72,9 +72,7 @@ const AllCommunities = () => {
         </div>
       </main>
 
-      <footer className="homepage-footer">
-        <p>© 2025 Tech Forum. All Rights Reserved.</p>
-      </footer>
+      
     </div>
   );
 };

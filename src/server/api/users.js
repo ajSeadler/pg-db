@@ -7,16 +7,16 @@ const {
   getUserByEmail,
   getUserById,
 } = require("../db");
-const { requireUser } = require("./utils");
-const { JWT_SECRET = "somesecretvalue" } = process.env;
+const { authenticateToken, requireUser } = require("./utils");
 const jwt = require("jsonwebtoken");
 
-//
+// Import JWT_SECRET from environment variables
+const { JWT_SECRET } = process.env;
 
+// Route to get all users
 usersRouter.get("/", async (req, res, next) => {
   try {
     const users = await getAllUsers();
-
     res.send({
       users,
     });
@@ -24,7 +24,8 @@ usersRouter.get("/", async (req, res, next) => {
     next({ name, message });
   }
 });
-//NEED TO FIX THIS ROUTE. PROFILE PAGE WORKS WITHOUT IT BUT NOT WITH IT
+
+// Route to get a user by ID
 // usersRouter.get("/:id", async (req, res, next) => {
 //   try {
 //     const userId = parseInt(req.params.id, 10); // Ensure userId is an integer
@@ -46,18 +47,20 @@ usersRouter.get("/", async (req, res, next) => {
 //   }
 // });
 
+// Route for user login
 usersRouter.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    next({
+    return next({
       name: "MissingCredentialsError",
       message: "Please supply both an email and password",
     });
   }
+
   try {
     const user = await getUser({ email, password });
-    console.log("User:", user);
+
     if (user) {
       const token = jwt.sign(
         {
@@ -85,14 +88,16 @@ usersRouter.post("/login", async (req, res, next) => {
   }
 });
 
+// Route to get the authenticated user's profile - if for some reason this isnt working, make sure you;re setting token in local storage on the login client component
 usersRouter.get("/me", requireUser, async (req, res, next) => {
   try {
-    res.send(req.user); // Make sure this sends the full user data
+    res.send(req.user);
   } catch (error) {
     next(error);
   }
 });
 
+// Route for user registration
 usersRouter.post("/register", async (req, res, next) => {
   const { name, email, password, first_name, last_name } = req.body;
 
@@ -100,7 +105,7 @@ usersRouter.post("/register", async (req, res, next) => {
     const _user = await getUserByEmail(email);
 
     if (_user) {
-      next({
+      return next({
         name: "UserExistsError",
         message: "A user with that email already exists",
       });
@@ -119,7 +124,7 @@ usersRouter.post("/register", async (req, res, next) => {
         id: user.id,
         email,
       },
-      process.env.JWT_SECRET,
+      JWT_SECRET,
       {
         expiresIn: "1w",
       }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaRegHandshake, FaLaptopCode } from 'react-icons/fa'; 
 import Login from './Login'; 
 import Sidebar from './Sidebar'; 
+import TrendingCommunitiesChart from './TrendingCommunitiesChart';
 
 const HomePage = () => {
   // Initialize state variables
@@ -60,6 +61,7 @@ const HomePage = () => {
             <div className="cta-section">
               <h2>What's Trending?</h2>
               <p>Discover what's happening in the tech world with real-time articles and insights.</p>
+              <TrendingCommunitiesChart />
               <button className="cta-button">
                 <FaLaptopCode /> See the Latest Insights
               </button>
@@ -98,9 +100,7 @@ const HomePage = () => {
         </div>
       </main>
 
-      <footer className="homepage-footer">
-        <p>© 2025 Tech Forum. All Rights Reserved.</p>
-      </footer>
+      
     </div>
   );
 };

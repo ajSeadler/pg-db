@@ -17,119 +17,156 @@ const createUser = async({ name, email, password }) => {
     }
 }
 
-const getUser = async({email, password}) => {
-    if(!email || !password) {
-        return;
-    }
-    try {
-        const user = await getUserByEmail(email);
-        if(!user) return;
-        const hashedPassword = user.password;
-        const passwordsMatch = await bcrypt.compare(password, hashedPassword);
-        if(!passwordsMatch) return;
-        delete user.password;
-        return user;
-    } catch (err) {
-        throw err;
-    }
-}
-
-const getUserByEmail = async(email) => {
-    try {
-        const { rows: [ user ] } = await db.query(`
+const getUserByEmail = async (email) => {
+  try {
+    const {
+      rows: [user],
+    } = await db.query(
+      `
         SELECT * 
         FROM users
-        WHERE email=$1;`, [ email ]);
+        WHERE email=$1;`,
+      [email]
+    );
 
-        if(!user) {
-            return;
-        }
-        return user;
-    } catch (err) {
-        throw err;
+    if (!user) {
+      return;
     }
-}
+    return user;
+  } catch (err) {
+    throw err;
+  }
+};
+
+const getUserById = async (userId) => {
+  try {
+    const {
+      rows: [user],
+    } = await db.query(
+      `
+        SELECT *
+        FROM users
+        WHERE id = $1;
+        `,
+      [userId]
+    );
+
+    if (!user) return null;
+
+    // Omitting password from the user object
+    const sanitizedUser = { ...user };
+    delete sanitizedUser.password;
+
+    return sanitizedUser;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getUser = async ({ email, password }) => {
+  try {
+    if (!email || !password) {
+      throw new Error("Missing email or password");
+    }
+
+    const user = await getUserByEmail(email);
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    const hashedPassword = user.password;
+    const passwordsMatch = await bcrypt.compare(password, hashedPassword);
+    if (!passwordsMatch) {
+      throw new Error("Incorrect password");
+    }
+
+    // Omitting password from the user object
+    delete user.password;
+    return user;
+  } catch (err) {
+    throw err;
+  }
+};
+
+
 
 const getAllUsers = async () => {
-    try {
-        const { rows } = await db.query('SELECT * FROM users');
-        return rows;
-    } catch (error) {
-        throw error;
-    }
-}
+  try {
+    const { rows } = await db.query("SELECT * FROM users");
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
 
-const getReviewsByUserId = async (userId) => {
-    try {
-      const { rows } = await db.query(
-        `
-        SELECT *
-        FROM reviews
-        WHERE user_id = $1;
+const updateUserEmail = async (userId, newEmail) => {
+  try {
+    const {
+      rows: [updatedUser],
+    } = await db.query(
+      `
+            UPDATE users
+            SET email = $2
+            WHERE id = $1
+            RETURNING *;
         `,
-        [userId]
-      );
-  
-      return rows;
-    } catch (error) {
-      throw error;
-    }
-  };
+      [userId, newEmail]
+    );
 
+    return updatedUser;
+  } catch (error) {
+    throw error;
+  }
+};
 
-  const getUserById = async (userId) => {
-    try {
-      const {
-        rows: [user],
-      } = await db.query(
-        `
-          SELECT *
-          FROM users
-          WHERE id = $1;
-          `,
-        [userId]
-      );
-  
-      if (!user) return null;
-  
-      // Omitting password from the user object
-      const sanitizedUser = { ...user };
-      delete sanitizedUser.password;
-  
-      return sanitizedUser;
-    } catch (error) {
-      throw error;
-    }
-  };
-  
-  const getReviewsWithRestaurantDetails = async (userId) => {
-    try {
-      const reviews = await getReviewsByUserId(userId);
-  
-      const reviewsWithRestaurantDetails = await Promise.all(reviews.map(async (review) => {
-        const restaurant = await getRestaurantById(review.restaurant_id);
-        return {
-          ...review,
-          restaurant_name: restaurant.name || 'Unknown Restaurant',
-        };
-      }));
-  
-      return reviewsWithRestaurantDetails;
-    } catch (error) {
-      throw error;
-    }
-  };
-  
+const updateUserName = async (userId, newName) => {
+  try {
+    const {
+      rows: [updatedUser],
+    } = await db.query(
+      `
+            UPDATE users
+            SET name = $2
+            WHERE id = $1
+            RETURNING *;
+        `,
+      [userId, newName]
+    );
 
+    return updatedUser;
+  } catch (error) {
+    throw error;
+  }
+};
 
+const updateUserPassword = async (userId, newPassword) => {
+  const hashedPassword = await bcrypt.hash(newPassword, SALT_COUNT);
+  try {
+    const {
+      rows: [updatedUser],
+    } = await db.query(
+      `
+            UPDATE users
+            SET password = $2
+            WHERE id = $1
+            RETURNING id, name, email; -- Only return necessary fields
+        `,
+      [userId, hashedPassword]
+    );
 
+    return updatedUser;
+  } catch (error) {
+    throw error;
+  }
+};
 
 module.exports = {
-    createUser,
-    getUser,
-    getUserByEmail,
-    getReviewsByUserId,
-    getAllUsers, 
-    getUserById,
-    getReviewsWithRestaurantDetails
+  createUser,
+  getUser,
+  getUserByEmail,
+  getAllUsers,
+  getUserById,
+  updateUserEmail,
+  updateUserName,
+  updateUserPassword,
 };

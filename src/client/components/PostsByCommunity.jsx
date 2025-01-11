@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'; // To get communityId from URL
 import Sidebar from './Sidebar';  // Assuming Sidebar is used in this component as well
+import Avatar from 'react-avatar';
+
 
 const PostsByCommunity = () => {
   const { communityId } = useParams(); // Get communityId from URL params
@@ -65,9 +67,18 @@ const PostsByCommunity = () => {
                   posts.map((post) => (
                     <div key={post.id} className="post">
                       <div className="post-header">
-                        <h3>{post.author_name}</h3>
-                        <span>From {post.community_name}</span> {/* Show the community name here */}
-                      </div>
+  <Avatar
+    name={post.author_name}
+    size="40"
+    round={true}
+    className="post-avatar"
+  />
+  <div className="author-info">
+    <h3 className="author-name">{post.author_name}</h3>
+    <span className="community-name">From {post.community_name}</span>
+  </div>
+</div>
+
                       <p>{post.content}</p>
                       <div className="post-footer">
                         <span>{new Date(post.created_at).toLocaleString()}</span>
@@ -83,9 +94,6 @@ const PostsByCommunity = () => {
         </div>
       </main>
 
-      <footer className="homepage-footer">
-        <p>© 2025 Tech Forum. All Rights Reserved.</p>
-      </footer>
     </div>
   );
 };

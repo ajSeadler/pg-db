@@ -1,6 +1,6 @@
 const express = require("express");
 const postsRouter = express.Router();
-const { getAllPosts, getPostsByCommunity, getPostById } = require("../db/posts");
+const { getAllPosts, getPostsByCommunity, getPostById, getTrendingCommunities } = require("../db/posts");
 
 // Get all posts (for viewing) with pagination
 postsRouter.get("/", async (req, res, next) => {
@@ -11,6 +11,17 @@ postsRouter.get("/", async (req, res, next) => {
     res.json(posts);
   } catch (error) {
     next(error);
+  }
+});
+
+// Get trending communities
+postsRouter.get("/trending", async (req, res, next) => {
+  try {
+    const trending = await getTrendingCommunities();
+    res.json(trending);
+  } catch (error) {
+    console.error("Error fetching trending communities:", error);
+    res.status(500).send("Internal Server Error");
   }
 });
 
@@ -36,7 +47,7 @@ postsRouter.get("/:postId", async (req, res, next) => {
   const { postId } = req.params;
 
   try {
-    const post = await getPostById(postId);  // Get the post by its ID
+    const post = await getPostById(postId);
     if (!post) {
       return res.status(404).send("Post not found");
     }

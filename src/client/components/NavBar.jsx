@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link for routing
-import { FaHome, FaRegHandshake, FaLaptopCode } from 'react-icons/fa'; // Icons for NavBar
+import { FaHome, FaRegHandshake, FaLaptopCode,  } from 'react-icons/fa'; // Icons for NavBar
+import {ImProfile} from 'react-icons/im'
 
 const NavBar = () => {
   return (
@@ -15,6 +16,9 @@ const NavBar = () => {
           <li><Link to="/" className="nav-item">Home <FaHome size={24} className="nav-icon" /></Link></li>
           <li><Link to="/posts" className="nav-item">Posts <FaLaptopCode size={24} className="nav-icon" /></Link></li>
           <li><Link to="/communities" className="nav-item">Communities <FaRegHandshake size={24} className="nav-icon" /></Link></li>
+          <li><Link to="/me" className="nav-item">Profile <ImProfile size={24} className="nav-icon" /></Link></li>
+
+          
         </ul>
       </nav>
 

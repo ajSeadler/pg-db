@@ -1,5 +1,32 @@
+const jwt = require("jsonwebtoken");
+const { JWT_SECRET = "somesecretvalue" } = process.env;
+
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) {
+    return res.status(401).json({ error: "Authorization header is missing" });
+  }
+
+  const token = authHeader.split(" ")[1];
+  if (!token) {
+    return res.status(401).json({ error: "Token is missing" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.user = decoded; // Attach decoded payload to req.user
+    next();
+  } catch (error) {
+    console.error("Invalid token:", error);
+    res.status(401).json({ error: "Invalid or expired token" });
+  }
+};
+
+
+
 function requireUser(req, res, next) {
     if (!req.user) {
+      console.log("req.user in requireUser middleware:", req.user);
       res.status(401);
       return next({
         name: "MissingUserError",
@@ -70,4 +97,5 @@ function requireUser(req, res, next) {
     requireUser,
     requiredNotSent,
     isAdmin,
+    authenticateToken
   };
