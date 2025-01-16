@@ -6,6 +6,7 @@ const {
   getUser,
   getUserByEmail,
   getUserById,
+  getPostsByUser,
 } = require("../db");
 const { authenticateToken, requireUser } = require("./utils");
 const jwt = require("jsonwebtoken");
@@ -138,5 +139,16 @@ usersRouter.post("/register", async (req, res, next) => {
     next({ name, message });
   }
 });
+
+// Route to get the logged-in user's posts
+usersRouter.get("/me/posts", requireUser, async (req, res, next) => {
+  try {
+    const posts = await getPostsByUser(req.user.id); // Use the logged-in user's ID
+    res.send({ posts });
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 module.exports = usersRouter;

@@ -1,8 +1,8 @@
 // userData.js
 const userData = [
     {
-      name: "Emily Johnson",
-      email: "emily@example.com",
+      name: "Aj Seadler",
+      email: "aj@example.com",
       password: "securepass",
       is_admin: true,
     },

@@ -56,4 +56,7 @@ apiRouter.use("/posts", postsRouter);
 const communitiesRouter = require("./communities");  // Import the communities router
 apiRouter.use("/communities", communitiesRouter); 
 
+const cryptoRouter = require("./cryptoRouter");
+apiRouter.use("/crypto", cryptoRouter);
+
 module.exports = apiRouter;

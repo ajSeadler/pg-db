@@ -1,6 +1,7 @@
 const express = require("express");
 const postsRouter = express.Router();
-const { getAllPosts, getPostsByCommunity, getPostById, getTrendingCommunities } = require("../db/posts");
+const { getAllPosts, getPostsByCommunity, getPostById, getTrendingCommunities, createPost } = require("../db/posts");
+const { requireUser } = require("./utils"); // Import the requireUser function
 
 // Get all posts (for viewing) with pagination
 postsRouter.get("/", async (req, res, next) => {
@@ -53,6 +54,25 @@ postsRouter.get("/:postId", async (req, res, next) => {
     }
     res.json(post);
   } catch (error) {
+    next(error);
+  }
+});
+
+// Create a new post (requires authentication)
+postsRouter.post("/", requireUser, async (req, res, next) => {
+  const { content, communityId, tags } = req.body;
+  const userId = req.user.id; // Assuming the user is added to `req.user` by `requireUser`
+
+  // Validate input
+  if (!content || !communityId) {
+    return res.status(400).send("Missing required fields: content or communityId.");
+  }
+
+  try {
+    const newPost = await createPost({ userId, content, communityId, tags });
+    res.status(201).json(newPost);
+  } catch (error) {
+    console.error("Error creating post:", error);
     next(error);
   }
 });

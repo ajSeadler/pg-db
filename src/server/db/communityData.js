@@ -5,7 +5,7 @@ const communityData = [
     { name: 'Cybersecurity', description: 'Discussions about securing systems and networks' },
     { name: 'Computer Hardware', description: 'All things related to computer components and hardware' },
     { name: 'Windows', description: 'For everything about Microsoft Windows OS' },
-    { name: 'Mac', description: 'Discussions related to Apple Mac products and macOS' },
+    { name: 'Apple', description: 'Discussions related to Apple Mac products and macOS' },
   ];
   
   module.exports = communityData;

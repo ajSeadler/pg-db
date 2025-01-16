@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';  // To get the postId from URL
-import Sidebar from './Sidebar';  // Import Sidebar component
+import React, { useState, useEffect } from "react";
+import { FaTag } from "react-icons/fa";
+import { useParams } from "react-router-dom"; // To get the postId from URL
+import Sidebar from "./Sidebar"; // Import Sidebar component
+
 
 const FullPostPage = () => {
-  const { postId } = useParams();  // Get postId from URL params
+  const { postId } = useParams(); // Get postId from URL params
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState('');
+  const [newComment, setNewComment] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -16,11 +18,11 @@ const FullPostPage = () => {
       try {
         const response = await fetch(`/api/posts/${postId}`);
         if (!response.ok) {
-          throw new Error('Failed to fetch post');
+          throw new Error("Failed to fetch post");
         }
         const data = await response.json();
         setPost(data);
-        fetchComments(data.id);  // Fetch the comments once the post is loaded
+        fetchComments(data.id); // Fetch the comments once the post is loaded
       } catch (error) {
         setError(error.message);
       } finally {
@@ -32,7 +34,7 @@ const FullPostPage = () => {
       try {
         const response = await fetch(`/api/posts/${postId}/comments`);
         if (!response.ok) {
-          throw new Error('Failed to fetch comments');
+          throw new Error("Failed to fetch comments");
         }
         const data = await response.json();
         setComments(data);
@@ -55,18 +57,18 @@ const FullPostPage = () => {
 
     try {
       const response = await fetch(`/api/posts/${postId}/comments`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ content: newComment }),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to post comment');
+        throw new Error("Failed to post comment");
       }
 
       const newCommentData = await response.json();
       setComments((prevComments) => [newCommentData, ...prevComments]); // Add new comment at the top
-      setNewComment('');  // Clear the input field
+      setNewComment(""); // Clear the input field
     } catch (error) {
       setError(error.message);
     }
@@ -91,9 +93,21 @@ const FullPostPage = () => {
                 <div className="post" key={post.id}>
                   <div className="post-header">
                     <h3>{post.author_name}</h3>
-                    <span>From {post.community_name}</span>
+                    <span className="community-badge">
+                      {" "}
+                      • {post.community_name}
+                    </span>
                   </div>
                   <p>{post.content}</p>
+                  <div className="post-tags">
+                      {/* If tags exist, map over them */}
+                      {post.tags && post.tags.map((tag, index) => (
+                        <div key={index} className="post-tag">
+                          <FaTag className="tag-icon" />
+                          {tag}
+                        </div>
+                      ))}
+                    </div>
                   <div className="post-footer">
                     <span>{new Date(post.created_at).toLocaleString()}</span>
                   </div>
@@ -126,7 +140,9 @@ const FullPostPage = () => {
                     {comments.map((comment) => (
                       <div className="comment" key={comment.id}>
                         <div className="comment-header">
-                          <span className="comment-author">{comment.author_name}</span>
+                          <span className="comment-author">
+                            {comment.author_name}
+                          </span>
                           <span className="comment-time">
                             {new Date(comment.created_at).toLocaleString()}
                           </span>
@@ -141,8 +157,6 @@ const FullPostPage = () => {
           </div>
         </div>
       </main>
-
-      
     </div>
   );
 };

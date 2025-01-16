@@ -10,6 +10,8 @@ import UserProfile from "./components/UserProfile";
 import { Routes, Route } from "react-router-dom";
 import ScrollToTop from "../ScrollToTop";
 import Footer from "./components/Footer";
+import Login from './components/Login'
+import Register from "./components/Register";
 
 import "./style.css";
 
@@ -26,6 +28,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/me" element={<UserProfile />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+
         <Route path="/posts" element={<PostsPage />} />
         <Route path="/posts/:postId" element={<FullPostsPage />} />
         <Route path="/communities" element={<AllCommunities />} />

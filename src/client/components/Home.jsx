@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { FaRegHandshake, FaLaptopCode } from 'react-icons/fa'; 
 import Login from './Login'; 
 import Sidebar from './Sidebar'; 
@@ -37,6 +38,8 @@ const HomePage = () => {
     fetchArticles();
   }, []);
 
+
+
   return (
     <div className="homepage-container">
       <main className="homepage-main">
@@ -45,13 +48,16 @@ const HomePage = () => {
         <div className="feed">
           <div className="feed-content">
             <div className="flex-container">
-              <div className="site-description">
-                <h2>Welcome to Filo.</h2>
-                <p><strong>First in last out.</strong> Filo is the go-to platform for tech enthusiasts to stay updated on the latest news, trends, and innovations in the tech world. Join the community and discover what’s happening in technology right now.</p>
-                <button className="cta-button">
-                  <FaRegHandshake /> Join Today
-                </button>
-              </div>
+              {/* Conditionally render the site description */}
+              
+                <div className="site-description">
+                  <h2>Welcome to Filo.</h2>
+                  <p><strong>First in last out.</strong> Filo is the go-to platform for tech enthusiasts to stay updated on the latest news, trends, and innovations in the tech world. Join the community and discover what’s happening in technology right now.</p>
+                  <Link  to="/register" className="cta-button" style={{width:'25%'}}>
+                    <FaRegHandshake /> Join Today
+                  </Link>
+                </div>
+            
 
               <div className="site-description">
                 <Login />
@@ -68,7 +74,7 @@ const HomePage = () => {
             </div>
             <div className="recent-topics">
               <h2>Don't Know What To Talk About?</h2>
-              <p style={{marginBottom:'3%'}}>Take a peek at the latest tech srticles below!</p>
+              <p style={{marginBottom:'3%'}}>Take a peek at the latest tech articles below!</p>
               {loading ? (
                 <p>Loading...</p>
               ) : error ? (
@@ -99,8 +105,6 @@ const HomePage = () => {
           </div>
         </div>
       </main>
-
-      
     </div>
   );
 };
