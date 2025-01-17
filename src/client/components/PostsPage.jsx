@@ -17,8 +17,11 @@ const PostsPage = () => {
     const fetchPosts = async () => {
       setLoading(true);
       try {
-        const communityFilter = selectedCommunity !== "all" ? `&community=${selectedCommunity}` : "";
-        const response = await fetch(`/api/posts?page=${page}&limit=6${communityFilter}`);
+        const communityFilter =
+          selectedCommunity !== "all" ? `&community=${selectedCommunity}` : "";
+        const response = await fetch(
+          `/api/posts?page=${page}&limit=6${communityFilter}`
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch posts");
         }
@@ -31,7 +34,6 @@ const PostsPage = () => {
         setLoading(false);
       }
     };
-    
 
     fetchPosts();
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -76,7 +78,7 @@ const PostsPage = () => {
         <div className="feed">
           <div className="feed-content">
             {/* Community Selector */}
-            <div className="community-selector">
+            {/* <div className="community-selector">
               <select
                 className="community-dropdown"
                 value={selectedCommunity}
@@ -89,7 +91,7 @@ const PostsPage = () => {
                   </option>
                 ))}
               </select>
-            </div>
+            </div> */}
 
             <div className="posts-container">
               {loading ? (

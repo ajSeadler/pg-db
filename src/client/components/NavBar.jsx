@@ -1,33 +1,56 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link for routing
-import { FaHome, FaRegHandshake, FaLaptopCode } from 'react-icons/fa'; // Icons for NavBar
-import { ImProfile } from 'react-icons/im';
+// NavBar.js
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { FaSearch, FaUserCircle } from "react-icons/fa";
 
 const NavBar = () => {
+  const [token, setToken] = useState(null);
+
+  // Simulate token check (replace this with real logic in your app)
+  useEffect(() => {
+    const userToken = localStorage.getItem("token"); // Replace with your actual token logic
+    setToken(userToken);
+  }, []);
+
   return (
     <header className="navbar">
       <div className="navbar-logo">
         <h1>
-          <span style={{ color: 'white', textDecoration: 'underline', textDecorationColor: '#06BA63' }}>filo</span>
-          <span style={{ color: '#06BA63', textDecoration: 'underline' }}>.</span>
+          <span
+            style={{
+              color: "white",
+              textDecoration: "underline",
+              textDecorationColor: "#06BA63",
+            }}
+          >
+            filo
+          </span>
+          <span style={{ color: "#06BA63", textDecoration: "underline" }}>
+            .
+          </span>
         </h1>
       </div>
 
-      <nav className="navbar-links">
-        <ul>
-          <li><Link to="/" className="nav-item">Home <FaHome size={24} className="nav-icon" /></Link></li>
-          <li><Link to="/posts" className="nav-item">Posts <FaLaptopCode size={24} className="nav-icon" /></Link></li>
-          <li><Link to="/communities" className="nav-item">Communities <FaRegHandshake size={24} className="nav-icon" /></Link></li>
-          <li><Link to="/me" className="nav-item">Profile <ImProfile size={24} className="nav-icon" /></Link></li>
-        </ul>
-      </nav>
+      <div className="navbar-search">
+        <input
+          type="text"
+          placeholder="Search..."
+          className="search-input"
+          aria-label="Search"
+        />
+        <FaSearch size={20} className="search-icon" />
+      </div>
 
-      {/* Add Login and Register as links */}
       <div className="navbar-actions">
-        
-        <Link to="/register" className="nav-button">
-          <button>Register</button>
-        </Link>
+        {token ? (
+          <Link to="/me" className="nav-avatar">
+            <FaUserCircle size={32} />
+          </Link>
+        ) : (
+          <Link to="/register" className="nav-button">
+            <button>Register</button>
+          </Link>
+        )}
       </div>
     </header>
   );

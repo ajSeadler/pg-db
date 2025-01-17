@@ -13,7 +13,8 @@ html {
 
 /* Background and basic layout */
 .homepage-container {
-  background: radial-gradient(circle, #2c3e50, #34495e); /* Centered gradient */
+  background: radial-gradient(circle, #2c3e50, #34495e);
+  /* Centered gradient */
   color: #f4f4f5;
   padding-top: 6%;
   display: flex;
@@ -26,14 +27,20 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(135deg, #1a252f, #2e3b47); /* Diagonal gradient */
+  background: linear-gradient(135deg, #1a252f, #2e3b47);
+  /* Diagonal gradient */
   padding: 20px 40px;
   color: #f4f4f5;
-  position: fixed; /* Fixes the navbar at the top */
-  top: 0; /* Position it at the top */
-  left: 0; /* Align it to the left */
-  width: 100%; /* Ensure it spans the full width */
-  z-index: 1000; /* Ensures it stays on top of other elements */
+  position: fixed;
+  /* Fixes the navbar at the top */
+  top: 0;
+  /* Position it at the top */
+  left: 0;
+  /* Align it to the left */
+  width: 100%;
+  /* Ensure it spans the full width */
+  z-index: 1000;
+  /* Ensures it stays on top of other elements */
 }
 
 
@@ -48,45 +55,161 @@ html {
 .navbar-links ul {
   list-style: none;
   display: flex;
-  gap: 20px; /* Spacing between items */
+  gap: 20px;
+  /* Spacing between items */
 }
 
 .navbar-links li {
   display: flex;
-  align-items: center; /* Vertically center the icon and text */
+  align-items: center;
+  /* Vertically center the icon and text */
 }
 
 .nav-item {
   display: flex;
-  align-items: center; /* Align text and icon horizontally */
-  text-decoration: none; /* Remove underline from links */
-  color: inherit; /* Inherit color from the parent */
+  align-items: center;
+  /* Align text and icon horizontally */
+  text-decoration: none;
+  /* Remove underline from links */
+  color: inherit;
+  /* Inherit color from the parent */
 }
 
 /* Center the icon vertically with respect to the text */
 .nav-icon {
-  margin-left: 8px; /* Space between the text and icon */
-  vertical-align: middle; /* Align the icon with the text */
+  margin-left: 8px;
+  /* Space between the text and icon */
+  vertical-align: middle;
+  /* Align the icon with the text */
 }
 
 
 .navbar-links ul li a {
   text-decoration: none;
   color: #f4f4f5;
-  font-size: 1.1rem; /* Slightly larger font size */
-  font-weight: 500; /* Use medium font weight for cleaner text */
-  padding: 5px 10px; /* Add padding around text for better clickable area */
-  border-radius: 5px; /* Rounded corners for links */
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  font-size: 1.1rem;
+  /* Slightly larger font size */
+  font-weight: 500;
+  /* Use medium font weight for cleaner text */
+  padding: 5px 10px;
+  /* Add padding around text for better clickable area */
+  border-radius: 5px;
+  /* Rounded corners for links */
+  transition: all 0.3s ease;
+  /* Smooth transition for hover effects */
 }
 
 .navbar-links ul li a:hover {
-  color: 06BA63; /* Light blue for hover effect */
-  background-color: rgba(0, 180, 204, 0.1); /* Subtle background highlight on hover */
-  box-shadow: 0 2px 5px rgba(0, 180, 204, 0.2); /* Slight shadow for depth */
-  text-decoration: underline; /* Underline text on hover for better feedback */
+  color: 06BA63;
+  /* Light blue for hover effect */
+  background-color: rgba(0, 180, 204, 0.1);
+  /* Subtle background highlight on hover */
+  box-shadow: 0 2px 5px rgba(0, 180, 204, 0.2);
+  /* Slight shadow for depth */
+  text-decoration: underline;
+  /* Underline text on hover for better feedback */
 }
 
+.navbar-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #2e3b47;
+  border-radius: 20px;
+  padding: 5px 15px;
+  color: #f4f4f5;
+  width: 50%;
+}
+
+.search-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #f4f4f5;
+  font-size: 1rem;
+}
+
+.search-icon {
+  color: #06ba63;
+}
+
+.nav-avatar {
+  color: #06ba63;
+  transition: transform 0.2s ease;
+}
+
+.nav-avatar:hover {
+  transform: scale(1.1);
+}
+
+/* General styling for the sidebar */
+.main-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-bottom: #666 solid 2px;
+
+}
+
+/* Style the list of items */
+.main-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style each list item */
+.main-nav li {
+  width: 100%;
+}
+
+/* Styling for each navigation link */
+.main-nav .active-link {
+  color: #06BA63;
+  /* Highlight color for active link */
+  font-weight: bold;
+}
+
+/* Style the NavLink elements */
+.main-nav a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px;
+  color: #e0e0e0;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.main-nav a:hover {
+  background-color: #06ba6363;
+  border-radius: 5%;
+  color: white;
+}
+
+/* Style for the icons */
+.main-nav a svg {
+  margin-right: 10px;
+  color: #d8a297;
+  transition: transform 0.2s ease;
+}
+
+.main-nav a:hover svg {
+  transform: scale(1.1);
+}
+
+/* Optional: Add spacing for the first item */
+.main-nav li:first-child a {
+  margin-top: 20px;
+}
+
+/* Active link state */
+.main-nav .active-link {
+  background-color: #06BA63;
+  color: white;
+  border-radius: 5px;
+}
 
 
 /* Additional button styles if necessary */
@@ -112,7 +235,8 @@ html {
   justify-content: space-between;
   margin-right: 50%;
   justify-content: left;
-  gap: 5px; /* Space between the word and the icon */
+  gap: 5px;
+  /* Space between the word and the icon */
   font-size: 1.2rem;
   width: auto !important;
   color: #f4f4f5;
@@ -121,11 +245,13 @@ html {
 }
 
 .logout:hover {
-  color: #06BA63; /* Change the color on hover */
+  color: #06BA63;
+  /* Change the color on hover */
 }
 
 .logout svg {
-  vertical-align: middle; /* Ensure the icon is aligned with the text */
+  vertical-align: middle;
+  /* Ensure the icon is aligned with the text */
 }
 
 .communities-stats-container {
@@ -139,41 +265,48 @@ html {
 }
 
 .welcome-message {
-  background-color: #1a252f; /* Light grey background */
+  background-color: #1a252f;
+  /* Light grey background */
   padding: 20px;
   margin-top: 10%;
   margin-bottom: 20px;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
 }
 
 .welcome-message h3 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #06BA63; /* Deep grey/blue */
+  color: #06BA63;
+  /* Deep grey/blue */
   margin-bottom: 10px;
 }
 
 .welcome-message p {
   font-size: 1rem;
-  color: #fff; /* Neutral grey */
+  color: #fff;
+  /* Neutral grey */
   line-height: 1.6;
 }
 
 .faq-section {
   margin-top: 20px;
   padding-top: 10px;
-  border-top: 1px solid #e0e0e0; /* Light separator */
+  border-top: 1px solid #e0e0e0;
+  /* Light separator */
 }
 
 .faq-section h4 {
   font-size: 1.25rem;
-  color: #06ba63; /* Deep grey/blue */
+  color: #06ba63;
+  /* Deep grey/blue */
   margin-bottom: 15px;
 }
 
 .faq-section ul {
-  list-style: none; /* Remove default list styling */
+  list-style: none;
+  /* Remove default list styling */
   padding: 0;
 }
 
@@ -282,7 +415,8 @@ html {
 
 /* Registration Section */
 .register-container {
-  background: linear-gradient(145deg, #1a252f, #2e3b47); /* Matches dashboard background */
+  background: linear-gradient(145deg, #1a252f, #2e3b47);
+  /* Matches dashboard background */
   color: #f4f4f5;
   padding: 40px 20px;
   border-radius: 10px;
@@ -300,7 +434,8 @@ html {
 
 .register-container h2 {
   font-size: 2rem;
-  color: #06BA63; /* Matches other section headers */
+  color: #06BA63;
+  /* Matches other section headers */
   margin-bottom: 20px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -407,16 +542,20 @@ html {
 .login-container {
   /* background-color: #34495e; */
   width: auto;
- 
+
   color: white;
 }
 
 .article-image img {
-  width: 500px; /* You can adjust this width as needed */
-  height: auto; /* Maintains the aspect ratio */
-  object-fit: cover; /* Ensures the image fits well without stretching */
+  width: 500px;
+  /* You can adjust this width as needed */
+  height: auto;
+  /* Maintains the aspect ratio */
+  object-fit: cover;
+  /* Ensures the image fits well without stretching */
   margin-right: 10px;
-  border-radius: 20px; /* Space between the image and the article text */
+  border-radius: 20px;
+  /* Space between the image and the article text */
 }
 
 .article-details {
@@ -473,17 +612,20 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 30px; /* Space between the two containers */
+  gap: 30px;
+  /* Space between the two containers */
 }
 
 /* Styling for Login Section */
 .login-section {
-  flex: 1; /* Ensures it takes available space */
+  flex: 1;
+  /* Ensures it takes available space */
 }
 
 /* Styling for Site Description Section */
 .site-description {
-  flex: 1; /* Ensures it takes available space */
+  flex: 1;
+  /* Ensures it takes available space */
   background-color: #34495e;
   padding: 30px;
   margin-bottom: 5%;
@@ -504,13 +646,16 @@ html {
 .site-description .cta-button {
   background-color: #06BA63;
   color: white;
-  padding: 15px;
+  padding: 7px;
+  width: auto;
+  text-decoration: none;
   border: none;
   border-radius: 6px;
   font-size: 1.1rem;
   cursor: pointer;
   transition: background-color 0.3s;
   display: flex;
+  flex-direction: row;
   align-items: center;
 }
 
@@ -519,7 +664,8 @@ html {
 }
 
 .site-description .cta-button svg {
-  margin-right: 8px; /* Space between icon and text */
+  margin-right: 8px;
+  /* Space between icon and text */
 }
 
 
@@ -536,12 +682,13 @@ html {
 /* Sidebar */
 .sidebar {
   width: 20vw;
-height: auto;
+  height: auto;
   background-color: #2d3a45;
   color: white;
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 0 15px #06BA63; /* Adjust the radius and color for the glow */
+  box-shadow: 0 0 15px #06BA63;
+  /* Adjust the radius and color for the glow */
 
 }
 
@@ -564,6 +711,7 @@ height: auto;
 .sidebar-action button:hover {
   background-color: #007b8a;
 }
+
 /* Tech Communities Section */
 .tech-communities {
   margin-top: 30px;
@@ -572,7 +720,8 @@ height: auto;
 .tech-communities h3 {
   font-size: 1.5rem;
   margin-bottom: 10px;
-  color: #06BA63; /* Light blue for the title */
+  color: #06BA63;
+  /* Light blue for the title */
 }
 
 .tech-communities ul {
@@ -600,7 +749,8 @@ height: auto;
 .tech-communities ul li a svg {
   margin-right: 8px;
   font-size: 1.3rem;
-  color: #06BA63; /* Matching icon color */
+  color: #06BA63;
+  /* Matching icon color */
 }
 
 .community-list {
@@ -610,7 +760,8 @@ height: auto;
 .post-tags {
   display: flex;
   margin-top: 3%;
-  gap: 10px; /* Space between individual tags */
+  gap: 10px;
+  /* Space between individual tags */
 }
 
 
@@ -619,7 +770,7 @@ height: auto;
   display: flex;
   align-items: center;
   color: white;
-  background-color: #476e5b;
+  background-color: #7e00c7;
   padding: 5px 10px;
   border-radius: 20px;
   font-weight: bold;
@@ -627,7 +778,8 @@ height: auto;
 }
 
 .tag-icon {
-  font-size: 0.5rem; /* Smaller tag icon */
+  font-size: 0.5rem;
+  /* Smaller tag icon */
   margin-right: 5px;
 }
 
@@ -636,11 +788,13 @@ height: auto;
 /* Feed Area */
 .feed {
   width: 75vw;
-  margin-left: 20px; /* Add some space between sidebar and feed */
- height: auto;
- border-radius: 20px;
-  overflow-y: auto ;
-  box-shadow: 0 0 15px #06BA63; /* Adjust the radius and color for the glow */
+  margin-left: 20px;
+  /* Add some space between sidebar and feed */
+  height: auto;
+  border-radius: 20px;
+  overflow-y: auto;
+  box-shadow: 0 0 15px #06BA63;
+  /* Adjust the radius and color for the glow */
 
 }
 
@@ -717,8 +871,10 @@ height: auto;
 
 .recent-topics ul {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns */
-  gap: 20px; /* Space between grid items */
+  grid-template-columns: repeat(2, 1fr);
+  /* 2 columns */
+  gap: 20px;
+  /* Space between grid items */
   list-style-type: none;
   padding: 0;
 }
@@ -754,27 +910,32 @@ height: auto;
 }
 
 
-.recent-topics h2, .popular-discussions h2 {
+.recent-topics h2,
+.popular-discussions h2 {
   font-size: 2rem;
   margin-bottom: 15px;
 }
 
-.recent-topics ul, .popular-discussions ul {
+.recent-topics ul,
+.popular-discussions ul {
   list-style-type: none;
 }
 
-.recent-topics ul li, .popular-discussions ul li {
+.recent-topics ul li,
+.popular-discussions ul li {
   font-size: 1rem;
   margin-bottom: 10px;
 }
 
-.recent-topics ul li a, .popular-discussions ul li a {
+.recent-topics ul li a,
+.popular-discussions ul li a {
   color: #06BA63;
   text-decoration: none;
   transition: color 0.3s;
 }
 
-.recent-topics ul li a:hover, .popular-discussions ul li a:hover {
+.recent-topics ul li a:hover,
+.popular-discussions ul li a:hover {
   color: #fcfcfc;
 }
 
@@ -801,13 +962,15 @@ height: auto;
 
 /* Avatar styling */
 .post-avatar {
-  margin-right: 15px; /* Space between avatar and name */
+  margin-right: 15px;
+  /* Space between avatar and name */
   transition: transform 0.3s ease;
 }
 
 /* Hover effect for the avatar */
 .post-avatar:hover {
-  transform: scale(1.05); /* Slight zoom-in effect on hover */
+  transform: scale(1.05);
+  /* Slight zoom-in effect on hover */
 }
 
 /* Container for the author's name and community name */
@@ -827,7 +990,8 @@ height: auto;
 
 /* Author's name hover effect */
 .author-name:hover {
-  color: #007bff; /* Highlight on hover */
+  color: #007bff;
+  /* Highlight on hover */
 }
 
 /* Community name styling */
@@ -888,12 +1052,15 @@ height: auto;
 
 /* Welcome Section */
 .welcome-section {
-  background-color: #34495e; /* Background color matches the overall theme */
+  background-color: #34495e;
+  /* Background color matches the overall theme */
   padding: 30px;
   border-radius: 8px;
   margin-bottom: 30px;
-  color: #f4f4f5; /* White text for contrast */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  color: #f4f4f5;
+  /* White text for contrast */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  /* Add shadow for depth */
 }
 
 .welcome-section h2 {
@@ -907,7 +1074,8 @@ height: auto;
 }
 
 .cta-button {
-  background-color: #06BA63; /* Consistent with the site's color scheme */
+  background-color: #06BA63;
+  /* Consistent with the site's color scheme */
   color: white;
   padding: 15px;
   border: none;
@@ -924,45 +1092,53 @@ height: auto;
 }
 
 .cta-button svg {
-  margin-right: 8px; /* Space between icon and text */
+  margin-right: 8px;
+  /* Space between icon and text */
 }
 
 /* Communities Container */
 .communities-container {
-display: flex; 
-flex-direction: column;
- gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   padding: 20px;
-  background-color: #2d3a45;  /* Match dark background theme */
+  background-color: #2d3a45;
+  /* Match dark background theme */
   border-radius: 8px;
 }
 
 /* Individual Community Card */
 .community-card {
-  background-color: #34495e; /* Dark card background */
+  background-color: #34495e;
+  /* Dark card background */
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Shadow effect for depth */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  /* Shadow effect for depth */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   overflow: hidden;
 }
 
 .community-card:hover {
-  transform: translateY(-5px); /* Hover effect: Lift card */
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
+  transform: translateY(-5px);
+  /* Hover effect: Lift card */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  /* Darker shadow on hover */
 }
 
 /* Community Header (Title and Description) */
 .community-header {
   padding: 20px;
-  color: #f4f4f5; /* Light text for readability */
+  color: #f4f4f5;
+  /* Light text for readability */
 }
 
 .community-header h3 {
   font-size: 1.7rem;
   font-weight: 600;
   margin-bottom: 12px;
-  color: #06BA63; /* Blue for title */
+  color: #06BA63;
+  /* Blue for title */
 }
 
 .community-header p {
@@ -976,13 +1152,15 @@ flex-direction: column;
   padding: 15px;
   text-align: left;
   margin-bottom: 5px;
-  border-top: 1px solid #444; /* Darker divider line */
+  border-top: 1px solid #444;
+  /* Darker divider line */
 }
 
 .view-button {
   text-decoration: none;
   padding: 12px;
-  background-color: #06BA63; /* Blue button */
+  background-color: #06BA63;
+  /* Blue button */
   color: #ffffff;
   font-weight: 500;
   border-radius: 4px;
@@ -991,7 +1169,8 @@ flex-direction: column;
 }
 
 .view-button:hover {
-  background-color: #007b8a; /* Darker blue on hover */
+  background-color: #007b8a;
+  /* Darker blue on hover */
 }
 
 /* Loading/Error Text */
@@ -1005,7 +1184,8 @@ flex-direction: column;
 .no-communities-text {
   text-align: center;
   font-size: 1.2rem;
-  color: #c0392b; /* Error color */
+  color: #c0392b;
+  /* Error color */
   font-weight: 500;
 }
 
@@ -1013,10 +1193,12 @@ flex-direction: column;
 /* Comment Section Styling */
 .comments-section {
   margin-top: 30px;
-  background-color: #34495e; /* Consistent with post background */
+  background-color: #34495e;
+  /* Consistent with post background */
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  /* Shadow for depth */
 }
 
 .comments-section h4 {
@@ -1031,7 +1213,8 @@ flex-direction: column;
   margin-bottom: 15px;
   border: 1px solid #3b4a59;
   border-radius: 4px;
-  background-color: #2d3a45; /* Darker background for input field */
+  background-color: #2d3a45;
+  /* Darker background for input field */
   color: #f4f4f5;
   font-size: 1rem;
 }
@@ -1048,7 +1231,8 @@ flex-direction: column;
 }
 
 .comment-submit-button:hover {
-  background-color: #007b8a; /* Slightly darker hover effect */
+  background-color: #007b8a;
+  /* Slightly darker hover effect */
 }
 
 .comments-list {
@@ -1056,7 +1240,8 @@ flex-direction: column;
 }
 
 .comment {
-  background-color: #2d3a45; /* Dark background to match the theme */
+  background-color: #2d3a45;
+  /* Dark background to match the theme */
   margin-bottom: 15px;
   padding: 15px;
   border-radius: 8px;
@@ -1067,16 +1252,19 @@ flex-direction: column;
   display: flex;
   justify-content: space-between;
   font-size: 0.9em;
-  color: #aaa; /* Light gray for timestamps and author */
+  color: #aaa;
+  /* Light gray for timestamps and author */
 }
 
 .comment-author {
   font-weight: bold;
-  color: #06BA63; /* Highlight author name in blue */
+  color: #06BA63;
+  /* Highlight author name in blue */
 }
 
 .comment-time {
-  color: #aaa; /* Lighter gray for time */
+  color: #aaa;
+  /* Lighter gray for time */
 }
 
 .comment p {
@@ -1091,7 +1279,8 @@ flex-direction: column;
   flex-direction: column;
 }
 
-.comment-form input, .comment-form textarea {
+.comment-form input,
+.comment-form textarea {
   padding: 12px;
   margin-bottom: 15px;
   border: 1px solid #3b4a59;
@@ -1273,23 +1462,28 @@ flex-direction: column;
 }
 
 .post-avatar2 {
-margin-bottom: 3%;
+  margin-bottom: 3%;
 }
 
 .community-badge {
-  display: flex; /* Ensures it only takes up as much space as its content */
+  display: flex;
+  /* Ensures it only takes up as much space as its content */
   font-size: 0.9rem;
   font-weight: bolder;
   width: auto;
-  color: #ffffff; /* White text for good contrast */
-  padding: 0.2rem 0.6rem; /* Padding for better appearance */
-  border-radius: 12px; /* Rounded corners to look like a badge */
-  text-align: left; /* Centers the text inside the badge */
+  color: #ffffff;
+  /* White text for good contrast */
+  padding: 0.2rem 0.6rem;
+  /* Padding for better appearance */
+  border-radius: 12px;
+  /* Rounded corners to look like a badge */
+  text-align: left;
+  /* Centers the text inside the badge */
 }
 
 
 .create-post-card {
-  border-radius: 8px; 
+  border-radius: 8px;
   padding: 30px;
   margin-top: 20px;
 }
